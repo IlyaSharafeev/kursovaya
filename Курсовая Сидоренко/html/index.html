@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Путівник по рок-н-роллу</title>
+  <link rel="shortcut icon" href="../assets/icons/rok.png" type="image/x-icon">
+  <link rel="stylesheet" href="../css/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+      </a>
+      <nav class="navbar-nav">
+        <ul>
+          <li>
+            <a href="index.html">Головна</a>
+          </li>
+          <li>
+            <a href="60.html">60 роки</a>
+          </li>
+          <li>
+            <a href="70.html">70 роки</a>
+          </li>
+          <li>
+            <a href="80.html">80 роки</a>
+          </li>
+          <li>
+            <a href="90.html">90 роки</a>
+          </li>
+          <li>
+            <a href="2000.html">2000 роки</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('../assets/images/image.jpg')">
+      <div class="container">
+        <h1>Путівник по рок-н-роллу</h1>
+        <p class="lead">Дізнайся,які бенди були популярні у певну епоху</p>
+        <a href="#" class="btn btn-primary" id="back-btn" onclick="byeSite()">Скосити сайт</a>
+      </div>
+    </section>
+
+    <div class="container-slider">
+      <span id="previous"> ⬅ </span>
+      <span id="next"> ➡ </span>
+
+      <div id="slider" class="slider">
+        <img class="img-slider" src="../assets/images/60/Pink%20Floyd.jpg">
+        <img class="img-slider" src="../assets/images/2000/Linkin%20Parking.jpg">
+        <img class="img-slider" src="../assets/images/2000/Twenty%20One%20Pilots.jpg">
+        <img class="img-slider" src="../assets/images/60/Pink%20Floyd.jpg">
+        <img class="img-slider" src="../assets/images/60/The%20Beatles.jpg">
+      </div>
+    </div>
+
+    <!-- Split Section -->
+    <section class="section-padding section-grey">
+      <div class="container">
+        <div class="split-section">
+          <div class="split-section__text">
+            <h2>Я теж,в якомусь сенсі, рок-н-ролл</h2>
+            <p class="lead">Але передивись справжніх рок-зірок за допомогою верхньої панелі</p>
+          </div>
+          <div class="split-section__image">
+            <img src="../assets/images/me.jpg" alt="Laptop" class="img-shadow img-rounded">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <small class="footer-copyright">© 2022 Сидоренко Андрій Васильович </small>
+          <img src="../assets/images/jab.jpg" width="60px" height="40px" alt="Laptop" class="img-shadow img-squared">
+        <ul class="footer-social">
+          <li>
+            <a href="#">
+              <img src="../assets/icons/facebook.svg" alt="WebDev on Facebook">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/zawadnoi/">
+              <img src="../assets/icons/instagram.svg" alt="WebDev on Instagram">
+            </a>
+          </li>
+          <li>
+            <a href="https://youtu.be/aZWWlqDy8nE">
+              <img src="../assets/icons/youtube.svg" alt="WebDev on Youtube">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="../assets/icons/twitter.svg" alt="WebDev on Twitter">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script>
+  function byeSite() {
+    window.document.querySelector("body").classList.toggle('byeSite');
+  }
+
+  const nextEl = document.getElementById("next");
+  const previousEl = document.getElementById("previous");
+  const sliderEl = document.getElementById("slider");
+  //const imgWidth = sliderEl.offsetWidth;
+  nextEl.addEventListener("click", onNextClick);
+  previousEl.addEventListener("click", onPreviousClick);
+  const imgWidth = sliderEl.offsetWidth;
+
+  const loopAutoNext = (time) => {
+    setTimeout(() => {
+      onNextClick()
+      loopAutoNext(5000)
+    }, time);
+  }
+
+  loopAutoNext(5000)
+
+  function onNextClick() {
+
+    sliderEl.scrollLeft += imgWidth;
+    //return to beginning
+    const sliderFullWidth = sliderEl.scrollWidth
+    const lastSlide = sliderFullWidth - imgWidth
+    if (lastSlide == sliderEl.scrollLeft) {
+      sliderEl.scrollLeft = 0
+    }
+  }
+
+  function onPreviousClick() {
+    const imgWidth = sliderEl.offsetWidth;
+    sliderEl.scrollLeft -= imgWidth;
+  }
+
+</script>
+
+</html>
